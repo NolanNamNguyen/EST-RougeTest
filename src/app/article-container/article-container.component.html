@@ -1,0 +1,58 @@
+<!-- Search form -->
+<div class="articles_container">
+    <div class="search_container">
+        <div (click)="optionVisible = !optionVisible" class="search_icon_container">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <i class="fas fa-angle-double-down"></i>
+        </div>
+        <ul [ngClass]="{'hidden': optionVisible}" class="searchOption_container">
+            <li *ngFor="let option of searchOptionList" (click)="getSearchOption(option)">{{option}}</li>
+        </ul>
+        <input class="login_input" (keyup.enter)="onSearchEnter()" type="text" [(ngModel)]="filterList.searchContent"/>
+        <label [ngClass]="{'small_label': filterList.searchContent}">Search By {{filterList.searchOption}}</label>
+        <span class="focus-border"></span>
+    </div>
+    <div class="card-footer pb-0 pt-3 pagination_section">
+        <!-- <jw-pagination [items]="articleList" (changePage)="onChangePage($event)"></jw-pagination> -->
+        <nav aria-label="...">
+            <ul class="pagination">
+              <li [ngClass]="{'disabled': isPrevDisabled}" class="page-item">
+                <a (click)="preBtnClick()" class="page-link" >Previous</a>
+              </li>
+              <li *ngFor="let page of paginationPages" [ngClass]="{'active': this.filterList.selectedPage == (finalPage - page)}" class="page-item">
+                <a (click)="updateArticleList(finalPage - page)" class="page-link" >{{finalPage - page}}</a>
+              </li>
+              <li [ngClass]="{'disabled': isNextDisabled}" class="page-item">
+                <a (click)="nextBtnClick()" class="page-link">Next</a>
+              </li>
+            </ul>
+        </nav>
+        <div class="limitItem_contain">
+            <input #limit (keyup.enter)="updateArticleList(1)" (keypress)="checkLimitInput($event)" class="login_input" type="text" [(ngModel)]="filterList.itemsPerPage"/>
+            <label [ngClass]="{'small_label': limit.value}">Items per page</label>
+            <span class="focus-border limit_border"></span>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            SortBy
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a (click)="getSortOption(op)" *ngFor="let op of sortOption" class="dropdown-item">{{op}}</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            OrderBy
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a (click)="getOrderOption(op)" *ngFor="let op of orderOption" class="dropdown-item">{{op}}</a>
+          </div>
+        </div>
+    </div>
+    <div class="list_article_container" *ngFor="let article of articleList">
+        <app-article (click)="toArticleDetail(article)" [article]="article"></app-article>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,10 @@
+.image_container{
+    width: 28%;
+    margin-right: 20px;
+}
+.image_container img{
+    width: 100%;
+}
+:host{
+    cursor: pointer;
+}

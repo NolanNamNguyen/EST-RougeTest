@@ -1,0 +1,12 @@
+
+<div *ngIf="article" class="article_detail_container">
+    <div class="img_container" >
+        <img src="{{article.image}}" class="mr-3" alt="can't load image" />
+    </div>
+    <h2>{{article.title}}</h2>
+    <p>{{article.content}}</p>
+</div>
+
+<div *ngIf="!article">
+    Loading...
+</div>
