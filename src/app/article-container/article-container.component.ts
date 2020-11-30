@@ -1,5 +1,4 @@
 import { FilterOptionService } from './services/filter-option.service';
-import { ArticleDetailService } from './services/article-detail.service';
 import { ApiService } from './services/api.service';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Article } from '../core/models/article';

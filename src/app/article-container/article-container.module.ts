@@ -1,5 +1,4 @@
 import { FilterOptionService } from './services/filter-option.service';
-import { ArticleDetailService } from './services/article-detail.service';
 import { ApiService } from './services/api.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -21,7 +20,6 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     ApiService, 
-    ArticleDetailService,
     FilterOptionService
   ]
 })
